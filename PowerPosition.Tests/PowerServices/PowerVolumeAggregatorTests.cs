@@ -1,10 +1,5 @@
 ﻿using PowerPositions.Infrastructure.PowerServices;
 using Services;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace PowerPosition.Tests.PowerServices
 {
@@ -34,17 +29,17 @@ namespace PowerPosition.Tests.PowerServices
             var daily = result.FirstOrDefault();
 
             // Assert
-       
+
             Assert.NotEmpty(result);
             Assert.Equal(20, daily?.Volume[0]);
         }
 
         private PowerTrade CreateTrade(DateTime date, double[] volume)
         {
-            var tr =   Services.PowerTrade.Create(date, volume.Length);
-            for (var i = 0; i < volume.Length; i++) 
+            var tr = Services.PowerTrade.Create(date, volume.Length);
+            for (var i = 0; i < volume.Length; i++)
             {
-                tr.Periods[i].Period = i;
+                tr.Periods[i].Period = i + 1;
                 tr.Periods[i].Volume = volume[i];
             }
 

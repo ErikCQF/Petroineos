@@ -3,12 +3,6 @@ using Microsoft.Extensions.Options;
 using Moq;
 using PowerPositions.Infrastructure.Entities;
 using PowerPositions.Infrastructure.Helpers;
-using PowerPositions.Infrastructure.PowerServices;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace PowerPosition.Tests.PowerServices
 {
@@ -24,7 +18,8 @@ namespace PowerPosition.Tests.PowerServices
             var options = Options.Create(new DataPublisherOptions
             {
                 FilePath = "C:\\Temp",
-                StartFileName = "PowerPosition"
+                StartFileName = "PowerPosition",
+                CsvSeparetor = ";"
             });
 
             var publisher = new FileDataPublisher(
@@ -48,7 +43,7 @@ namespace PowerPosition.Tests.PowerServices
                 x.WriteAsync(
                     It.IsAny<string>(),
                     It.Is<string>(content =>
-                        content.Contains("Local;Time Volume") &&
+                        content.Contains("Local Time;Volume") &&
                         content.Contains("23:00;150")
                     )
                 ),
