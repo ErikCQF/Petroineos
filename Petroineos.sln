@@ -3,13 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.8.34525.116
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PowerPosition.Worker", "PowerPosition.Worker\PowerPosition.Worker.csproj", "{EB2E22ED-8812-41B8-B74E-F523D3DE0AD7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PowerPosition.Tests", "PowerPosition.Tests\PowerPosition.Tests.csproj", "{ED5ACBF9-4F89-4C48-952F-D6CDB0BCF6D2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PowerPosition.Tests", "PowerPosition.Tests\PowerPosition.Tests.csproj", "{ED5ACBF9-4F89-4C48-952F-D6CDB0BCF6D2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PowerPositions.Infrastructure", "PowerPositions.Infrastructure\PowerPositions.Infrastructure.csproj", "{490613FF-D6B7-422E-99CF-F580F1A68C89}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PowerPositions.Infrastructure", "PowerPositions.Infrastructure\PowerPositions.Infrastructure.csproj", "{490613FF-D6B7-422E-99CF-F580F1A68C89}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PowerPosition.WindowsService", "PowerPosition.WindowsService\PowerPosition.WindowsService.csproj", "{A47756CE-FAED-4919-B1AA-2503EC82F4AA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PowerPosition.WindowsService", "PowerPosition.WindowsService\PowerPosition.WindowsService.csproj", "{A47756CE-FAED-4919-B1AA-2503EC82F4AA}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{F50D504E-BB84-44EB-BF3A-CF60D1F0489C}"
 	ProjectSection(SolutionItems) = preProject
@@ -22,10 +20,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{EB2E22ED-8812-41B8-B74E-F523D3DE0AD7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{EB2E22ED-8812-41B8-B74E-F523D3DE0AD7}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{EB2E22ED-8812-41B8-B74E-F523D3DE0AD7}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{EB2E22ED-8812-41B8-B74E-F523D3DE0AD7}.Release|Any CPU.Build.0 = Release|Any CPU
 		{ED5ACBF9-4F89-4C48-952F-D6CDB0BCF6D2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{ED5ACBF9-4F89-4C48-952F-D6CDB0BCF6D2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{ED5ACBF9-4F89-4C48-952F-D6CDB0BCF6D2}.Release|Any CPU.ActiveCfg = Release|Any CPU
