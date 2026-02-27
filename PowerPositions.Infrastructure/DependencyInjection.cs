@@ -5,6 +5,7 @@ using PowerPositions.Infrastructure.Buffers;
 using PowerPositions.Infrastructure.Consumers;
 using PowerPositions.Infrastructure.Helpers;
 using PowerPositions.Infrastructure.PowerServices;
+using PowerPositions.Infrastructure.Processors;
 using PowerPositions.Infrastructure.Producers;
 using Services;
 using System;
@@ -24,27 +25,23 @@ namespace PowerPositions.Infrastructure
             // Options
             services.Configure<DataPublisherOptions>(configuration.GetSection("DataPublisher"));
             services.Configure<SchedulerOptions>(configuration.GetSection("Scheduler"));
+            services.Configure<ResilienceOptions>(configuration.GetSection("Resilience"));
 
-
-            // Services
-            services.AddScoped<IDataPublisher, FileDataPublisher>();
-            services.AddScoped<IFileWriter, FileWriter>();
+            // Services            
             services.AddScoped<IPowerService, PowerService>();
-            services.AddScoped<IPowerVolumeAggregator, PowerVolumeAggregator>();
-            services.AddScoped<IPowerDailyService, PowerDailyService>();
 
+            services.AddSingleton<IFileWriter, FileWriter>();
+            services.AddSingleton<IPowerVolumeAggregator, PowerVolumeAggregator>();            
             services.AddSingleton<IJobQueue, InMemoryJobQueue>();
-
-            
-            
+            services.AddSingleton<IDataPublisher, FileDataPublisher>();
+            services.AddSingleton<IPowerDailyService, PowerDailyService>();
+            services.AddSingleton<IPowerVolumeProcessor, PowerVolumeProcessor>();
 
             // Worker / Background processing
             services.AddHostedService<PowerVolumeConsumer>();
             services.AddHostedService<SchedulerReportProducer>();
 
-
-            return services;
-        
+            return services;        
         }
     }
 }

@@ -4,6 +4,7 @@ using Microsoft.Extensions.Options;
 using PowerPositions.Infrastructure.Buffers;
 using PowerPositions.Infrastructure.Helpers;
 using PowerPositions.Infrastructure.PowerServices;
+using PowerPositions.Infrastructure.Processors;
 using System.ComponentModel;
 using System.Threading.Channels;
 
@@ -13,19 +14,15 @@ namespace PowerPositions.Infrastructure.Consumers
     {
         private readonly ILogger<PowerVolumeConsumer> _logger;
         private readonly IJobQueue _queue;
-        private readonly IPowerDailyService _powerDailyService;
-        private readonly IDataPublisher _dataPublisher;
-
+        private readonly IPowerVolumeProcessor _powerVolumeProcessor;
         public PowerVolumeConsumer(
             ILogger<PowerVolumeConsumer> logger,
             IJobQueue queue,
-            IPowerDailyService powerDailyService,
-            IDataPublisher dataPublisher)
+            IPowerVolumeProcessor powerVolumeProcessor)
         {
             _logger = logger ?? throw new ArgumentNullException(nameof(logger));
             _queue = queue ?? throw new ArgumentNullException(nameof(queue));
-            _powerDailyService = powerDailyService ?? throw new ArgumentNullException(nameof(powerDailyService));
-            _dataPublisher = dataPublisher ?? throw new ArgumentNullException(nameof(dataPublisher));
+            _powerVolumeProcessor = powerVolumeProcessor ?? throw new ArgumentNullException(nameof(powerVolumeProcessor));
         }
 
         public async ValueTask ProcessAsync(DateTime date, CancellationToken cancellationToken = default)
@@ -40,17 +37,16 @@ namespace PowerPositions.Infrastructure.Consumers
             {
                 try
                 {
-                    var data = await _powerDailyService.GetDailyPowerVolumeAsync(date);
-                    await _dataPublisher.PublishAsync(data);
+                    await _powerVolumeProcessor.ProcessVolumeConsolidation(date);
                 }
                 catch (Exception ex)
                 {
                     _logger.LogError(ex, "Error processing report for {Date}", date);
+                    throw;
                 }
             }
 
             _logger.LogInformation("PowerVolumeWorker stopped.");
         }
     }
-
 }

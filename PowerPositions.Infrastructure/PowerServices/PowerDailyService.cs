@@ -10,7 +10,6 @@ using System.Threading.Tasks;
 
 namespace PowerPositions.Infrastructure.PowerServices
 {
-
     public class PowerDailyService : IPowerDailyService
     {
         private readonly ILogger<PowerDailyService> _logger;
@@ -22,14 +21,14 @@ namespace PowerPositions.Infrastructure.PowerServices
                                  IPowerVolumeAggregator volumeAggregator
                                  )
         {
-            this._logger = logger;
-            this._powerService = powerService;
-            this._volumeAggregator = volumeAggregator;
+            _logger = logger ?? throw new ArgumentNullException(nameof(logger));
+            _powerService = powerService ?? throw new ArgumentNullException(nameof(powerService));
+            _volumeAggregator = volumeAggregator ?? throw new ArgumentNullException(nameof(volumeAggregator));
         }
 
         public DailyPowerVolume GetDailyPowerVolume(DateTime date)
-        {            
-            return Consolidate(_powerService.GetTrades(date)).First() ?? new DailyPowerVolume() { ReportDate = date } ;
+        {
+            return Consolidate(_powerService.GetTrades(date)).First() ?? new DailyPowerVolume() { ReportDate = date };
         }
 
         public async Task<DailyPowerVolume> GetDailyPowerVolumeAsync(DateTime date)
@@ -40,7 +39,8 @@ namespace PowerPositions.Infrastructure.PowerServices
 
         private IEnumerable<DailyPowerVolume> Consolidate(IEnumerable<PowerTrade> trades)
         {
-           return _volumeAggregator.Consolidate(trades);
-        }      
+            return _volumeAggregator.Consolidate(trades);
+        }
     }
+
 }

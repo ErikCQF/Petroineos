@@ -4,9 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace PowerPositions.Infrastructure.Producers;
-
-public class SchedulerOptions
+namespace PowerPositions.Infrastructure.Producers
 {
-    public double IntervalInMinutes { get; set; }
+    public class SchedulerOptions
+    {
+        public double IntervalInMinutes { get; set; }
+    }
 }

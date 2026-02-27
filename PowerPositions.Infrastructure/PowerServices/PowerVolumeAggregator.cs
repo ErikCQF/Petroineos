@@ -38,7 +38,6 @@ namespace PowerPositions.Infrastructure.PowerServices
             }
 
             return dic.Values;
-
         }
     }
 }

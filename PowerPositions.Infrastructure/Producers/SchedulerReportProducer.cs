@@ -28,7 +28,6 @@ namespace PowerPositions.Infrastructure.Producers
             if (options.Value.IntervalInMinutes <= 0) throw new ArgumentNullException($"{options.Value.IntervalInMinutes} need be higher than zero");
 
         }
-
         protected override async Task ExecuteAsync(CancellationToken stoppingToken)
         {
             _logger.LogInformation("Started");

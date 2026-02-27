@@ -28,8 +28,6 @@ namespace PowerPosition.Tests.PowerServices
             _powerService = new PowerService();
         }
 
-
-
         [Fact]
         public void GetTrades_Assembly_Underlying_Service()
         {
