@@ -17,7 +17,7 @@ It can easily be replaced by a durable by implementing the `Buffers/IJobQueue` i
 
 ## Processing Description
 
-**PowerVolumeProcessor** gets trades by date and consolidates them.
+**PowerVolumeProcessor** get trades by date and consolidate them, then send data to data publisher service, which export the data to csv file.
 
 ---
 
