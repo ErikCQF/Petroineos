@@ -3,7 +3,7 @@
 ## Development Challenge – Requirements
 
 This version uses an **In-Memory Queue**.  
-It can easily be replaced by a durable implementation by implementing the `Buffers/IJobQueue` interface.
+It can easily be replaced by a durable by implementing the `Buffers/IJobQueue` interface.
 
 ---
 
